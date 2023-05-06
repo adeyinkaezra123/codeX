@@ -72,11 +72,6 @@ import {
 
 import FileIcon from "@/components/Icons/FileIcon";
 import LanguageIcon from "@/components/Icons/LanguageIcon";
-import FileJavascriptIcon from "@/components/Icons/FileJavascriptIcon";
-import FileMarkdownIcon from "@/components/Icons/FileMarkdownIcon";
-import FileJsonIcon from "@/components/Icons/FileJsonIcon";
-import FileDocumentIcon from "@/components/Icons/FileDocumentIcon";
-import FilePythonIcon from "@/components/Icons/FilePythonIcon";
 import { mapActions } from "vuex";
 import { SlideYUpTransition } from "vue2-transitions";
 
@@ -91,11 +86,6 @@ export default {
     ClipboardIcon,
     SlideYUpTransition,
     FileIcon,
-    FileJavascriptIcon,
-    FileMarkdownIcon,
-    FileJsonIcon,
-    FileDocumentIcon,
-    FilePythonIcon,
     LanguageIcon,
   },
   props: {

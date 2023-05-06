@@ -13,14 +13,16 @@
             <form class="input-area" @submit.prevent="createNewFile">
               <input
                 v-model="filename"
+                :style="errors ? { borderColor: 'red' } : ''"
                 type="text"
                 placeholder="Enter your file name..."
                 ref="fileNameInput"
+                @keyup="validateFileName"
                 autofocus
               />
               <SlideXRightTransition>
                 <button
-                  v-if="filename && filename.length > 0"
+                  v-if="filename && filename.length > 0 && !errors"
                   class="create-btn"
                   type="submit"
                 >
@@ -28,6 +30,13 @@
                 </button>
               </SlideXRightTransition>
             </form>
+            <div v-if="errors">
+              <small class="filename-error" v-if="errors == 'filename-error'"
+                >The name <b>{{ filename }}</b> is not accepted as a valid file
+                name. Please choose a different one</small
+              >
+              <small class="filename-error" v-else>{{ errors }}</small>
+            </div>
             <div class="file-types">
               <div
                 v-for="fileType in Object.values(fileTypes)"
@@ -62,6 +71,7 @@ import {
 } from "vue-feather-icons";
 import { SlideXRightTransition, SlideYUpTransition } from "vue2-transitions";
 import { mapActions, mapGetters } from "vuex";
+import filenameRegex from "filename-regex";
 export default {
   components: {
     XIcon,
@@ -92,6 +102,7 @@ export default {
           icon: "PenToolIcon",
         },
       },
+      errors: null,
     };
   },
   computed: {
@@ -122,8 +133,19 @@ export default {
     ...mapActions("Files", ["createFile"]),
     ...mapActions("Editor", ["openFile"]),
     ...mapActions("UI", ["setShowCreateFileModal"]),
+    filenameRegex,
+    validateFileName() {
+      this.errors = "";
+      if (!this.filename || this.filename.length < 1) {
+        return (this.errors = "A file name is required");
+      }
+      // if (this.filename !== this.filename.match(filenameRegex())[0]) {
+      if (!this.filename.match(/^([a-zA-Z0-9\s\._-]+)$/)) {
+        return (this.errors = "filename-error");
+      }
+    },
     async createNewFile() {
-      if (!this.filename) return;
+      if (!this.filename || this.errors) return;
       const file = await this.createFile({ name: this.filename });
       this.openFile(file);
       this.filename = "";
@@ -168,7 +190,7 @@ export default {
           this.$refs.fileNameInput.focus();
           // automatically select the file name part for editing
           if (this.filename && this.filename.trim().length > 0) {
-            const parts = this.filename.split('.');
+            const parts = this.filename.split(".");
             if (parts.length > 0) {
               this.$refs.fileNameInput.setSelectionRange(0, parts[0].length);
             }
@@ -231,6 +253,9 @@ export default {
       flex-direction: column;
       padding: 5px 15px;
 
+      .filename-error {
+        color: red;
+      }
       form.input-area {
         display: flex;
         flex-direction: row;
