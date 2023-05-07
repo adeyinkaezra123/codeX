@@ -72,6 +72,7 @@ import {
 import { SlideXRightTransition, SlideYUpTransition } from "vue2-transitions";
 import { mapActions, mapGetters } from "vuex";
 import filenameRegex from "filename-regex";
+import { EDITORS } from "@/store/modules/Editor/initialState";
 export default {
   components: {
     XIcon,
@@ -107,6 +108,8 @@ export default {
   },
   computed: {
     ...mapGetters("UI", ["getShowCreateFileModal", "getBootstrappedFileName"]),
+    ...mapGetters("Editor", ["getActiveFiles", "getOpenFiles"]),
+
     showModal: {
       get() {
         return this.getShowCreateFileModal;
@@ -143,9 +146,17 @@ export default {
       if (!this.filename.match(/^([a-zA-Z0-9\s\._-]+)$/)) {
         return (this.errors = "filename-error");
       }
+      const currentFiles = this.getOpenFiles[EDITORS.primary];
+      const fileAlreadyExist = currentFiles.some(
+        (file) => file.name === this.filename && file.parent === "root"
+      );
+      console.log(fileAlreadyExist);
+      if (fileAlreadyExist)
+        this.errors = `The file ${this.filename} already exist at this location. Please choose another file name`;
     },
     async createNewFile() {
       if (!this.filename || this.errors) return;
+
       const file = await this.createFile({ name: this.filename });
       this.openFile(file);
       this.filename = "";
@@ -198,6 +209,9 @@ export default {
         }, 100);
       }
     },
+  },
+  created() {
+    this.EDITORS = EDITORS;
   },
 };
 </script>
@@ -254,7 +268,7 @@ export default {
       padding: 5px 15px;
 
       .filename-error {
-        color: red;
+        color: var(--color-error);
       }
       form.input-area {
         display: flex;

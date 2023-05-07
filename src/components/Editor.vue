@@ -28,7 +28,7 @@
     <div
       v-if="
         getOpenFiles[EDITORS.secondary].length > 0 &&
-          getEditorMode === 'multiple'
+        getEditorMode === 'multiple'
       "
       id="secodary-editor"
       class="codemirror-instances"
@@ -153,7 +153,7 @@ import { mapActions, mapGetters } from "vuex";
 import { EDITORS } from "@/store/modules/Editor/initialState";
 import debounce from "lodash/debounce";
 import {
-FileIcon,
+  FileIcon,
   FilePlusIcon,
   FileTextIcon,
   FolderPlusIcon,
@@ -199,8 +199,8 @@ export default {
     RoughDrawEditor,
     FileDocumentIcon,
     FileIcon,
-    FileTextIcon
-},
+    FileTextIcon,
+  },
   data() {
     return {
       dragAndDropMode: false,
@@ -313,13 +313,14 @@ export default {
           }
         }
       }
-    },
+    }
   },
   created() {
     this.debouncedFileUpdate = debounce(this.updateFileContents, 1000);
     this.EDITORS = EDITORS;
   },
 };
+
 </script>
 
 <style lang="scss" scoped>

@@ -8,7 +8,7 @@
           orientation="horizontal"
           behaviour="contain"
         >
-          <Draggable v-for="file in draggableOpenFiles" :key="file.id">
+          <Draggable v-for="file in openFiles">
             <div
               class="tab"
               :key="file.id"
@@ -59,6 +59,7 @@ import { mapActions, mapGetters } from "vuex";
 import { Container, Draggable } from "vue-smooth-dnd";
 import { applyDrag, generateItems } from "../utils/dnd-helpers";
 import LanguageIcon from "./Icons/LanguageIcon.vue";
+import { EDITORS } from "@/store/modules/Editor/initialState";
 
 export default {
   components: {
@@ -77,7 +78,7 @@ export default {
   data() {
     return {
       isContextMenuToggled: false,
-      draggableOpenFiles: this.openFiles,
+
     };
   },
   computed: {
@@ -104,7 +105,11 @@ export default {
     },
     onDrop(dropResult) {
       this.draggableOpenFiles = applyDrag(this.draggableOpenFiles, dropResult);
-    },
+    }
+  },
+  created() {
+    this.EDITORS = EDITORS;
+    this.draggableOpenFiles = this.getOpenFiles[EDITORS.primary];
   },
 };
 </script>
@@ -196,7 +201,6 @@ export default {
     align-items: center;
     padding: 10px;
     border-radius: 3px;
-
     .icon {
       margin-right: 5px;
       width: 20px;
