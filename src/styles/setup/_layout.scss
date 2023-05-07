@@ -135,3 +135,40 @@ body,
     }
   }
 }
+/* width */
+::-webkit-scrollbar {
+  max-width: 14px;
+  max-height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  // background: #f1f1f1;
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.splitpanes {
+  &--vertical > &__splitter:hover {
+    // width: 7px;
+    padding: 1px;
+    background: var(--color-primary);
+    cursor: ew-resize;
+  }
+
+  &--horizontal > &__splitter {
+    min-height: 7px;
+    background: var(--color-primary);
+    cursor: ns-resize;
+  }
+}

@@ -15,7 +15,6 @@ export default {
   methods: {
     getMaterialFileIcon,
     renderIcon: function () {
-      console.log(this.fileName);
       return getMaterialFileIcon(this.fileName);
     },
   },

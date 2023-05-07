@@ -7,18 +7,30 @@
       @dragover.prevent
     >
       <SideNavigationBar />
-      <div v-show="getActivePanelId" class="explorer-panel">
+      <splitpanes>
+        <pane
+          v-show="getActivePanelId"
+          class="explorer-panel"
+          min-size="15%"
+          max-size="45%"
+        >
+          <FileExplorer v-if="getActivePanelId === 'explorer'" />
+          <SearchPanel :key="'search'" v-if="getActivePanelId === 'search'" />
+        </pane>
+        <pane><Editor /></pane>
+      </splitpanes>
+      <!-- <div v-show="getActivePanelId" class="explorer-panel">
         <FileExplorer v-if="getActivePanelId === 'explorer'" />
         <SearchPanel :key="'search'" v-if="getActivePanelId === 'search'" />
       </div>
-      <Editor />
+      <Editor /> -->
     </div>
     <FileCreationModal />
     <CommandCenter />
     <SlideYUpTransition>
       <router-view></router-view>
     </SlideYUpTransition>
-    <SwitchToMobileViewModal/>
+    <SwitchToMobileViewModal />
   </main>
 </template>
 
@@ -29,9 +41,12 @@ import CommandCenter from "@/components/CommandCenter";
 import SideNavigationBar from "@/components/SideNavigationBar";
 import SearchPanel from "@/components/SearchPanel";
 import { mapActions, mapGetters } from "vuex";
+import debounce from "lodash/debounce";
 import { SlideYUpTransition } from "vue2-transitions";
 import FileCreationModal from "@/components/FileCreationModal";
 import SwitchToMobileViewModal from "@/components/SwitchToMobileViewModal.vue";
+import { Splitpanes, Pane } from "splitpanes";
+import "splitpanes/dist/splitpanes.css";
 
 export default {
   components: {
@@ -43,7 +58,9 @@ export default {
     SearchPanel,
     SlideYUpTransition,
     FileCreationModal,
-    SwitchToMobileViewModal
+    SwitchToMobileViewModal,
+    Splitpanes,
+    Pane,
   },
   data() {
     return {};
@@ -73,7 +90,7 @@ export default {
           if (file.size / 1024 / 1024 < 10) {
             try {
               console.log(`Opening`, file);
-              await this.openLocalFile({ file })
+              await this.openLocalFile({ file });
             } catch (error) {
               console.error(error);
               return;
@@ -82,6 +99,9 @@ export default {
         }
       }
     },
+  },
+  mounted() {
+    new ResizeObserver(_.debounce((entries) => {}, 200));
   },
 };
 </script>
@@ -98,18 +118,16 @@ main {
   height: 100%;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 50px auto 1fr;
+  grid-template-columns: 50px auto;
   background: var(--color-secondary-light);
   position: relative;
 
-  &.hidePanel {
-    grid-template-columns: 50px 1fr;
-  }
-
   .explorer-panel {
-    width: 270px;
+    width: 170px;
     height: 100%;
     overflow: hidden;
   }
 }
+
+
 </style>

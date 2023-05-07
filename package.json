@@ -38,6 +38,7 @@
     "perfect-freehand": "^1.2.0",
     "register-service-worker": "^1.7.2",
     "roughjs": "^4.5.2",
+    "splitpanes": "^2.4.1",
     "uuid": "^9.0.0",
     "v-click-outside": "^3.2.0",
     "v-tooltip": "^2.1.3",

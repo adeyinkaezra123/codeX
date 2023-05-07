@@ -150,7 +150,6 @@ export default {
       const fileAlreadyExist = currentFiles.some(
         (file) => file.name === this.filename && file.parent === "root"
       );
-      console.log(fileAlreadyExist);
       if (fileAlreadyExist)
         this.errors = `The file ${this.filename} already exist at this location. Please choose another file name`;
     },
