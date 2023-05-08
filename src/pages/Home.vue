@@ -17,13 +17,19 @@
           <FileExplorer v-if="getActivePanelId === 'explorer'" />
           <SearchPanel :key="'search'" v-if="getActivePanelId === 'search'" />
         </pane>
-        <pane><Editor /></pane>
+        <pane>
+          <splitpanes horizontal>
+            <pane>
+              <Editor />
+            </pane>
+            <pane v-if="getShowExecutionPanel">
+              <SlideYUpTransition>
+                <CodeExecution />
+              </SlideYUpTransition>
+            </pane>
+          </splitpanes>
+        </pane>
       </splitpanes>
-      <!-- <div v-show="getActivePanelId" class="explorer-panel">
-        <FileExplorer v-if="getActivePanelId === 'explorer'" />
-        <SearchPanel :key="'search'" v-if="getActivePanelId === 'search'" />
-      </div>
-      <Editor /> -->
     </div>
     <FileCreationModal />
     <CommandCenter />
@@ -37,6 +43,7 @@
 <script>
 // import FileExplorer from "@/components/FileExplorer";
 import Editor from "@/components/Editor";
+import CodeExecution from "@/components/CodeExecution";
 import CommandCenter from "@/components/CommandCenter";
 import SideNavigationBar from "@/components/SideNavigationBar";
 import SearchPanel from "@/components/SearchPanel";
@@ -54,6 +61,7 @@ export default {
     // Editor: () => import("@/components/Editor"),
     Editor,
     CommandCenter,
+    CodeExecution,
     SideNavigationBar,
     SearchPanel,
     SlideYUpTransition,
@@ -66,7 +74,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters("UI", ["getActivePanelId"]),
+    ...mapGetters("UI", ["getActivePanelId", "getShowExecutionPanel"]),
   },
   methods: {
     ...mapActions("Files", ["createFile"]),
@@ -128,6 +136,4 @@ main {
     overflow: hidden;
   }
 }
-
-
 </style>

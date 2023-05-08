@@ -15,6 +15,12 @@ export default {
     commit(types.SET_ACTIVE_PANEL_ID, PANELS.search.id);
   },
   /**
+   * Sets the visibility of the code execution panel
+   */
+  setShowExecutionPanel: async ({ commit }, flag) => {
+    commit(types.SET_SHOW_EXECUTION_PANEL, flag);
+  },
+  /**
    * Sets the current panelId
    */
   setActivePanelId: async ({ commit }, { id }) => {
@@ -51,5 +57,5 @@ export default {
       commit(types.SET_BOOTSTRAPPED_FILE_NAME, filename);
     }
     commit(types.SET_SHOW_CREATE_FILE_MODAL, flag);
-  }
+  },
 };

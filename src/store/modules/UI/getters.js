@@ -10,6 +10,9 @@ export default {
   getShowCommandCenter: (state) => {
     return state.showCommandCenter;
   },
+  getShowExecutionPanel: (state) => {
+    return state.showExecutionPanel;
+  },
   getActiveTheme: (state) => {
     return state.activeTheme;
   },
@@ -18,5 +21,5 @@ export default {
   },
   getBootstrappedFileName: (state) => {
     return state.bootstrappedFileName;
-  }
+  },
 };

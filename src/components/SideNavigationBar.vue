@@ -17,6 +17,16 @@
         <component :is="menuItem.icon" size="20" />
         <span class="menu-tooltip">{{ menuItem.name }}</span>
       </div>
+      <div
+        :key="getShowExecutionPanel"
+        :class="['menu-icon', { active: getShowExecutionPanel }]"
+        v-shortkey="['ctrl', 'alt', 't']"
+        @shortkey="toggleExecutionPanel"
+        @click="toggleExecutionPanel"
+      >
+        <PlayIcon size="20" />
+        <span class="menu-tooltip">Run Code</span>
+      </div>
     </div>
     <div class="menu">
       <a
@@ -44,6 +54,7 @@ import {
   SettingsIcon,
   GithubIcon,
   CommandIcon,
+  PlayIcon,
 } from "vue-feather-icons";
 import { mapActions, mapGetters } from "vuex";
 
@@ -55,6 +66,7 @@ export default {
     TrashIcon,
     SettingsIcon,
     GithubIcon,
+    PlayIcon,
     CommandIcon,
   },
   data() {
@@ -88,12 +100,20 @@ export default {
       "getActivePanelId",
       "getPanels",
       "getShowCommandCenter",
+      "getShowExecutionPanel",
     ]),
   },
   methods: {
-    ...mapActions("UI", ["setActivePanelId", "setShowCommandCenter"]),
+    ...mapActions("UI", [
+      "setActivePanelId",
+      "setShowCommandCenter",
+      "setShowExecutionPanel",
+    ]),
     toggleCommandCenter() {
       this.setShowCommandCenter(!this.getShowCommandCenter);
+    },
+    toggleExecutionPanel() {
+      this.setShowExecutionPanel(!this.getShowExecutionPanel);
     },
   },
 };

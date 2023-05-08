@@ -139,24 +139,19 @@ body,
 ::-webkit-scrollbar {
   max-width: 14px;
   max-height: 5px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  // background: #f1f1f1;
-  background: transparent;
+  &-track {
+    background: transparent;
+  }
+  &-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+    &:hover {
+      background: #555;
+    }
+  }
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
 
 .splitpanes {
   &--vertical > &__splitter:hover {
@@ -166,8 +161,8 @@ body,
     cursor: ew-resize;
   }
 
-  &--horizontal > &__splitter {
-    min-height: 7px;
+  &--horizontal > &__splitter:hover {
+    padding: 2px;
     background: var(--color-primary);
     cursor: ns-resize;
   }
