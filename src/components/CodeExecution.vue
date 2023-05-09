@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="code-execution"
-   
-  >
+  <div class="code-execution">
     <nav>
       <ul>
         <li
@@ -24,7 +21,6 @@
         v-if="activeTab === 'input'"
         v-model="userInput"
         placeholder="Enter input..."
-        @input="makeApiRequest"
       />
       <pre v-else>{{ apiResponse }}</pre>
     </div>
@@ -33,6 +29,7 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
   data() {
     return {
@@ -84,6 +81,7 @@ nav {
   width: 100%;
   padding: 1rem;
   background: var(--color-secondary);
+  color: var(--font-color);
   border: none;
   outline: none;
   height: 100%;
