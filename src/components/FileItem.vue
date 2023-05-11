@@ -10,7 +10,8 @@
       @contextmenu.prevent.stop="toggleContextMenu"
     >
       <LanguageIcon :fileName="filename" width="18" />
-      <form @submit.prevent="$refs.input.blur()">
+
+      <form @submit.prevent="changeFileName">
         <input
           :ref="'input'"
           type="text"
@@ -42,9 +43,9 @@
           <div class="option-item" @click="saveFileAs">
             <download-icon size="18" class="icon" />Download File
           </div>
-          <!--<div class="option-item">
+          <!-- <div class="option-item">
             <copy-icon size="18" class="icon" />Duplicate File
-          </div>-->
+          </div> -->
           <div class="option-item" @click="copyFileContents">
             <clipboard-icon size="18" class="icon" />Copy contents
           </div>
@@ -54,8 +55,6 @@
         </div>
       </SlideYUpTransition>
     </div>
-
-    <!-- <span>{{ file.name }}</span> -->
   </div>
 </template>
 
@@ -108,6 +107,7 @@ export default {
     ]),
     ...mapActions("Files", ["renameFile", "deleteFile"]),
     changeFileName() {
+      console.log(this.filename);
       if (this.filename) {
         this.renameFile({ id: this.file.id, name: this.filename });
         this.readonly = true;

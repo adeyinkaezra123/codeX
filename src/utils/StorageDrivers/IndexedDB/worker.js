@@ -80,7 +80,7 @@ const Driver = {
           .where("id")
           .equals(id)
           .modify({ name });
-        // console.log(`file ${id} renamed!`);
+        console.log(`file ${id} renamed!`);
         return file;
       });
       return renamedFile;

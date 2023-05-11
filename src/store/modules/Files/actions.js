@@ -10,7 +10,9 @@ export default {
    */
   loadFiles: async ({ commit, dispatch }) => {
     // clears the storage to prevent mismatching storage structures
-    const initialFootPrintsCleared = localStorage.getItem("isInitialFootprintsClearedForv1");
+    const initialFootPrintsCleared = localStorage.getItem(
+      "isInitialFootprintsClearedForv1"
+    );
     if (!initialFootPrintsCleared) {
       await fileStorage.clearActiveFiles();
       await fileStorage.clearOpenFiles();
@@ -114,6 +116,7 @@ export default {
       },
     });
     fileStorage.rename({ id, name });
+    console.log("Rename complete");
   },
 
   openRenameMode: async ({ state, commit }, { id }) => {
@@ -130,7 +133,7 @@ export default {
 
   deleteFile: async ({ state, commit, dispatch }, { id }) => {
     if (!id) return;
-    console.log("Inside delete file")
+    console.log("Inside delete file");
     await dispatch("Editor/closeFileFromAllEditor", { id }, { root: true });
     commit(types.SET_FILES, omit(state.files, id));
     fileStorage.delete({ id });
