@@ -151,6 +151,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import TopBar from "@/components/TopBar";
 import { mapActions, mapGetters } from "vuex";
 import { EDITORS } from "@/store/modules/Editor/initialState";
+import { Splitpanes, Pane } from "splitpanes";
 import debounce from "lodash/debounce";
 import {
   FileIcon,
@@ -200,6 +201,8 @@ export default {
     FileDocumentIcon,
     FileIcon,
     FileTextIcon,
+    Splitpanes,
+    Pane,
   },
   data() {
     return {
@@ -313,21 +316,20 @@ export default {
           }
         }
       }
-    }
+    },
   },
   created() {
     this.debouncedFileUpdate = debounce(this.updateFileContents, 1000);
     this.EDITORS = EDITORS;
   },
 };
-
 </script>
 
 <style lang="scss" scoped>
 .editor-area {
   display: grid;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   overflow: hidden;
   position: relative;
 

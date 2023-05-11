@@ -155,15 +155,18 @@ body,
 
 .splitpanes {
   &--vertical > &__splitter:hover {
-    // width: 7px;
-    padding: 1px;
+    padding: 3px;
     background: var(--color-primary);
     cursor: ew-resize;
   }
 
-  &--horizontal > &__splitter:hover {
-    padding: 2px;
-    background: var(--color-primary);
-    cursor: ns-resize;
+  &--horizontal > &__splitter {
+    width: 100%;
+    height: 3px;
+    &:hover {
+      padding: 1px;
+      background: var(--color-primary);
+      cursor: ns-resize;
+    }
   }
 }

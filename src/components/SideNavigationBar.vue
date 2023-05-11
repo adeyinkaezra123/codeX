@@ -124,6 +124,8 @@ export default {
   background: var(--color-secondary);
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  // overflow-y: hidden;
   align-items: center;
   border-right: 1px solid var(--border-color);
 

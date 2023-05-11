@@ -18,14 +18,12 @@
           <SearchPanel :key="'search'" v-if="getActivePanelId === 'search'" />
         </pane>
         <pane>
-          <splitpanes horizontal>
-            <pane>
+          <splitpanes :push-other-panes="false" horizontal>
+            <pane min-size="15%">
               <Editor />
             </pane>
             <pane v-if="getShowExecutionPanel">
-              <SlideYUpTransition>
-                <CodeExecution />
-              </SlideYUpTransition>
+              <CodeExecution />
             </pane>
           </splitpanes>
         </pane>
@@ -58,7 +56,6 @@ import "splitpanes/dist/splitpanes.css";
 export default {
   components: {
     FileExplorer: () => import("@/components/FileExplorer"),
-    // Editor: () => import("@/components/Editor"),
     Editor,
     CommandCenter,
     CodeExecution,
@@ -107,9 +104,6 @@ export default {
         }
       }
     },
-  },
-  mounted() {
-    new ResizeObserver(_.debounce((entries) => {}, 200));
   },
 };
 </script>
