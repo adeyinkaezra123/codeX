@@ -90,7 +90,7 @@ export default {
       try {
         const backupData = await this.generateBackupData();
         const date = new Date();
-        const fileName = `snippin-backup-${date.getTime()}.json`;
+        const fileName = `codex-backup-${date.getTime()}.json`;
         const fileBlob = new Blob([JSON.stringify(backupData, null, 2)], {
           type: "text/JSON;charset=utf-8",
         });

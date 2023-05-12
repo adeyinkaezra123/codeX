@@ -6,9 +6,7 @@ module.exports = {
     config.module.rules.delete("eslint");
   },
   configureWebpack: {
-    // plugins: [new BundleAnalyzerPlugin()],
     plugins: [
-      // new BundleAnalyzerPlugin(),
       new MonacoWebpackPlugin({
         // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
         languages: [

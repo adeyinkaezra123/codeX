@@ -12,14 +12,11 @@
 
 <script>
 import MonacoEditor from "@/components/Editors/MonacoEditor/index";
-// import NightOwl from "@/themes/NightOwl";
 import DraculaTheme from "@/themes/Dracula";
 import GitHubTheme from "@/themes/GitHub";
 import { mapGetters } from "vuex";
 import { THEMES } from "@/store/modules/UI/initialState";
 import { languageExts, getLanguage } from "@/utils/editor/languageExts";
-// import BlackBoard from "@/themes/BlackBoard";
-// import CloudsMidnight from "@/themes/CloudsMidnight";
 
 export default {
   components: {
@@ -48,7 +45,6 @@ export default {
   },
   methods: {
     onCodeChanged(newCode) {
-      // this.code = newCode;
       this.$emit("contentChanged", newCode);
     },
     applyAppTheme() {
@@ -64,8 +60,6 @@ export default {
       }
     },
     editorDidMount(editor) {
-      // monaco.editor.defineTheme("night-owl", NightOwl);
-      // monaco.editor.setTheme("night-owl");
       editor.focus();
       this.monacoEditor = this.$refs.editor.monaco.editor;
       this.monacoEditor.defineTheme("Dracula", DraculaTheme);

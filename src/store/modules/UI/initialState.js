@@ -12,7 +12,7 @@ export const PANELS = {
   execute: {
     id: "execute",
     icon: "PlayIcon",
-    name: "Run Code",
+    name: "Run Code ",
   },
 };
 
@@ -33,7 +33,7 @@ const getActiveTheme = () => {
 export default function initialState() {
   return {
     activePanelId: PANELS.explorer.id,
-    panelsById: ["explorer", "search" ],
+    panelsById: ["explorer", "search"],
     showCommandCenter: false,
     showExecutionPanel: false,
     activeTheme: getActiveTheme(),

@@ -28,7 +28,7 @@ export default {
         if (value) {
           this.$notify({
             title: "Update Available!",
-            text: "A new version of snipp.in is available, please refresh the page to apply new changes",
+            text: "A new version of codeX is available, please refresh the page to apply new changes",
           });
         }
       },

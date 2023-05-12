@@ -1,9 +1,9 @@
 <template>
   <div class="mobileViewModalBackground">
     <div class="modal">
-      <h2>Snipp.in is optimized for desktops :(</h2>
+      <h2>codeX is optimized for desktops :(</h2>
       <p>
-        Please switch to your desktop/laptop browser to use snipp.in. The app is
+        Please switch to your desktop/laptop browser to use codeX. The app is
         optimized for desktops. Mobile devices might exhibit unexpected
         behaviours
       </p>

@@ -62,9 +62,9 @@
         )
       "
     >
-      <h2 class="title">Welcome to Snipp.in</h2>
+      <h2 class="title">Welcome to codeX</h2>
       <p class="description">
-        Snipp.in is an in-browser snippet manager and editor.
+        codeX is an in-browser codeXet manager and editor.
       </p>
 
       <h3 class="menu-title">Get Started</h3>
@@ -72,7 +72,7 @@
         <li
           @click="setShowCreateFileModal({ flag: true, filename: 'untitled' })"
         >
-          <FilePlusIcon class="icon" size="18" /> Create new snippet file
+          <FilePlusIcon class="icon" size="18" /> Create new codeXet file
         </li>
         <li
           @click="
@@ -90,7 +90,7 @@
       <ul class="menu">
         <li>
           <a
-            href="https://github.com/haxzie/snipp.in"
+            href="https://github.com/adeyinkaezra123/codeX"
             target="_blank"
             ref="noopener noreferrer"
             ><GithubIcon class="icon" size="18" /> GitHub</a
@@ -98,7 +98,7 @@
         </li>
         <li>
           <a
-            href="https://github.com/haxzie/snipp.in/issues"
+            href="https://github.com/adeyinkaezra123/codeX/issues"
             target="_blank"
             ref="noopener noreferrer"
             ><GitPullRequestIcon class="icon" size="18" /> Report a bug or an

@@ -6,14 +6,14 @@
         :class="['theme-selection', { active: getActiveTheme === 'dark' }]"
         @click="setActiveTheme({ theme: 'dark' })"
       >
-        <img src="@/assets/snippin-dark.svg" alt="" />
+        <img src="@/assets/codex-dark.svg" alt="" />
         <h4>Dark Theme</h4>
       </div>
       <div
         :class="['theme-selection', { active: getActiveTheme === 'light' }]"
         @click="setActiveTheme({ theme: 'light' })"
       >
-        <img src="@/assets/snippin-light.svg" alt="" />
+        <img src="@/assets/codex-light.svg" alt="" />
         <h4>Light Theme</h4>
       </div>
     </div>

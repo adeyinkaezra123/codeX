@@ -25,7 +25,7 @@
         @click="toggleExecutionPanel"
       >
         <PlayIcon size="20" />
-        <span class="menu-tooltip">Run Code</span>
+        <span class="menu-tooltip">Run Code (Ctrl + Alt + T) </span>
       </div>
     </div>
     <div class="menu">
@@ -90,7 +90,7 @@ export default {
           id: "github",
           icon: "GithubIcon",
           name: "GitHub",
-          link: "https://github.com/haxzie/snipp.in",
+          link: "https://github.com/adeyinkaezra123/codeX",
         },
       ],
     };
